@@ -1,0 +1,8 @@
+-CALCULAR HORAS
+select mod ((sysdate-5.533 - sysdate) * 24)from dual;
+-CALCULAR MINUTOS
+|| ':' || mod (((sysdate-5.533 - sysdate) * 24 * 60),60)
+from dual;
+-CALCULAR SEGUNDOS
+|| ':' || mod ((((sysdate-5.533 - sysdate) * 24 * 60 * 60),60)
+from dual;
