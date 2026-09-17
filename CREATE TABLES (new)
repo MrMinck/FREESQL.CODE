@@ -1,130 +1,101 @@
 CREATE TABLE disciplina (
-  codigo_disciplina  VARCHAR2(5)   PRIMARY KEY,
-  descricao          VARCHAR2(50)  NOT NULL
-
+    id_disciplina NUMBER PRIMARY KEY,
+    nome VARCHAR2(100) NOT NULL,
+    carga_horaria NUMBER NOT NULL,
+    descricao VARCHAR2(255)
+);
 
 INSERT INTO disciplina (CODIGO_DISCIPLINA, DESCRICAO)
 VALUES ('BD', 'BANCO DE DADOS');
 INSERT INTO disciplina (CODIGO_DISCIPLINA, DESCRICAO)
 VALUES ('EN', 'INGLÊS');
 
-
 );
+
 
 
 CREATE TABLE PROFESSOR (
-  codigo            NUMBER         PRIMARY KEY,
-  nome              VARCHAR2(100)  NOT NULL,
-  codigo_disciplina VARCHAR2(5)    NOT NULL,
-  CONSTRAINT fk_professor_disciplina FOREIGN KEY (codigo_disciplina)
-    REFERENCES disciplina (codigo_disciplina)
-
+    PROFESSOR_ID NUMBER PRIMARY KEY,
+    FIRST_NAME VARCHAR2(50) NOT NULL,
+    LAST_NAME VARCHAR2(50) NOT NULL,
+    DEPARTMENT_ID NUMBER,
+    HIRE_DATE DATE,
+    SALARY NUMBER(10, 2),
+    EMAIL VARCHAR2(100) UNIQUE
+);
 
 INSERT INTO PROFESSOR (CODIGO, NOME, CODIGO_DISCIPLINA)
 VALUES (1, 'CHARLES CALEIRO', 'BD');
 INSERT INTO PROFESSOR (CODIGO, NOME, CODIGO_DISCIPLINA)
 VALUES (2, 'TIAGO VIEIRA', 'EN');
 
-
 );
 
-CREATE TABLE turma (
-  codigo          VARCHAR2(10)  PRIMARY KEY,
-  nome_turma      VARCHAR2(60)  NOT NULL
 
+
+CREATE TABLE turma (
+    id_turma NUMBER PRIMARY KEY,
+    nome_turma VARCHAR2(100) NOT NULL,
+    ano_letivo NUMBER(4) NOT NULL,
+    id_professor NUMBER,
+    CONSTRAINT fk_professor FOREIGN KEY (id_professor) REFERENCES professor(id_professor)
+);
 
 https://github.com/andersonlariano/teste/blob/main/INSERT%20INTO%20TABLES
 
+INSERT INTO turma (codigo, nome_turma) VALUES ('801MAT', 'Oitava Série Um Matutino');
+insert into turma (codigo,nome_turma)  VALUES ('802MAT',  'Oitava Série Dois Verspertino');
+INSERT INTO turma (codigo, nome_turma) VALUES ('901MAT', 'Nona Série Um Matutino');
+INSERT INTO turma (codigo, nome_turma) VALUES ('902MAT', 'Nona Série Dois Vespertino');
+INSERT INTO turma (codigo, nome_turma) VALUES ('101INFO', 'Primeiro Ano Um Técnico em Informatica');
+INSERT INTO turma (codigo, nome_turma) VALUES ('102LOG', 'Primeiro Ano Dois Técnico em Logística');
+INSERT INTO turma (codigo, nome_turma) VALUES ('104LOG', 'Primeiro Ano Quatro Técnico em Logística');
+INSERT INTO turma (codigo, nome_turma) VALUES ('106INFO', 'Primeiro Ano Seis Técnico em Informática');
+INSERT INTO turma (codigo, nome_turma) VALUES ('201SST', 'Segundo Ano Um Técnico em Segurança do Trabalho');
+INSERT INTO turma (codigo, nome_turma) VALUES ('201EDF', 'Segundo Ano Um Técnico em Edificações');
+INSERT INTO turma (codigo, nome_turma) VALUES ('202INFO', 'Segundo Ano Dois Técnico em Informática');
+INSERT INTO turma (codigo, nome_turma) VALUES ('301POR', 'Terceiro Ano Um Técnico em Portos');
+INSERT INTO turma (codigo, nome_turma) VALUES ('302EDF', 'Terceiro Ano Dois Técnico em Edificações');
 
-INSERT INTO PROFESSOR (CODIGO, NOME, CODIGO_DISCIPLINA)
-VALUES (1, 'CHARLES CALEIRO', 'BD');
-INSERT INTO PROFESSOR (CODIGO, NOME, CODIGO_DISCIPLINA)
-VALUES (2, 'TIAGO VIEIRA', 'EN');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (1, 'GABRIEL SOUZA',13,'701MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (2, 'ANA BEATRIZ LIMA',13,'702MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (3, 'LUCAS OLIVEIRA',14,'801MAT');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('701MAT', 'SÉTIMA SÉRIE UM MATUTINO');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('702MAT', 'SÉTIMA SÉRIE DOIS MATUTINO');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('801MAT', 'OITAVA SÉRIE UM MATUTINO');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('802VES', 'OITAVA SÉRIE DOIS VESPERTINO');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('901MAT', 'NONA SÉRIE UM MATUTINO');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('902VES', 'NONA SÉRIE DOIS VESPERTINO');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('101INFO', 'PRIMEIRO ANO UM TÉCNICO EM INFORMÁTICA');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('102LOG', 'PRIMEIRO ANO DOIS TÉCNICO EM LOGÍSTICA');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('104LOG', 'PRIMEIRO ANO QUATRO TÉCNICO EM LOGÍSTICA');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('106INFO', 'PRIMEIRO ANO SEIS TÉCNICO EM INFORMÁTICA');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('201SST', 'SEGUNDO ANO UM TÉCNICO EM SEGURANÇA DO TRABALHO');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('201EDF', 'SEGUNDO ANO UM TÉCNICO EM EDIFICAÇÕES');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('202INFO', 'SEGUNDO ANO DOIS TÉCNICO EM INFORMÁTICA');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('301POR', 'TERCEIRO ANO UM TÉCNICO EM PORTOS');
-INSERT INTO TURMA (CODIGO, NOME_TURMA)
-VALUES ('302EDF', 'TERCEIRO ANO DOIS TÉCNICO EM EDIFICAÇÕES');
-
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (1, 'GABRIEL SOUZA',13,'701MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (2, 'ANA BEATRIZ LIMA',13,'702MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (3, 'LUCAS OLIVEIRA',14,'801MAT');
 );
 
 
+
 CREATE TABLE aluno (
-  codigo    NUMBER           PRIMARY KEY,
-  nome      VARCHAR2(100)    NOT NULL,
-  idade     NUMBER(2)        NOT NULL,
-  turma     VARCHAR2(10)     NOT NULL,
-  CONSTRAINT fk_aluno_turma FOREIGN KEY (turma)
-      REFERENCES turma (codigo)
+    id_aluno NUMBER PRIMARY KEY,
+    nome VARCHAR2(100) NOT NULL,
+    data_nascimento DATE NOT NULL,
+    email VARCHAR2(100) UNIQUE,
+    telefone VARCHAR2(15),
+    endereco VARCHAR2(200)
+);
 
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (1, 'Gabriel Souza', 13, '701MAT');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (2, 'Ana Beatriz Lima', 13, '702MAT');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (3, 'Lucas Oliveira', 14, '801MAT');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (4, 'Maria Eduarda Santos', 14, '802VES');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (5, 'Pedro Henrique Costa', 15, '901MAT');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (6, 'Isabela Ferreira', 15, '902VES');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (7, 'Matheus Almeida', 15, '101INFO');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (8, 'Sophia Rodrigues', 16, '102LOG');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (9, 'Guilherme Pereira', 16, '104LOG');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (10, 'Laura Martins', 16, '106INFO');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (11, 'Rafael Carvalho', 16, '201SST');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (12, 'Julia Gomes', 17, '201EDF');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (13, 'Bruno Ribeiro', 17, '202INFO');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (14, 'Beatriz Barbosa', 17, '301POR');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (15, 'Enzo Araújo', 18, '302EDF');
+    INSERT INTO aluno (codigo, nome, idade, turma) VALUES (16, 'Manuela Dias', 13, '701MAT');
 
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (1, 'GABRIEL SOUZA',13,'701MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (2, 'ANA BEATRIZ LIMA',13,'702MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (3, 'LUCAS OLIVEIRA',14,'801MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (4, 'MARIA EDUARDA SANTOS',14,'802VES');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (5, 'PEDRO HENRIQUE COSTA',15,'901MAT');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (6, 'ISABELA FERREIRA',15,'902VES');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (7, 'MATHEUS ALMEIDA',15,'101INFO');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (8, 'SOPHIA RODRIGUES',16,'102LOG');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (9, 'GUILHERME PEREIRA',16,'104LOG');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (10, 'LAURA MARTINA',16,'106INFO');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (11, 'RAFAEL CARVALHO',16,'201SST');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (12, 'JULIA GOMES',17,'201EDF');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (13, 'BRUNO RIBEIRO',17,'201INFO');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (14, 'BEATRIZ BARBOSA',17,'301POR');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (15, 'ENZO ARAÚJO',18,'302EDF');
-INSERT INTO ALUNO (CODIGO, NOME, IDADE, TURMA)
-VALUES (16, 'MANUELA DIAS',13,'701MAT');
+   
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (17, 'Miguel Nascimento', 13, '702MAT');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (18, 'Alice Monteiro', 14, '801MAT');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (19, 'Davi Cardoso', 14, '802VES');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (20, 'Valentina Teixeira', 15, '901MAT');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (21, 'Arthur Correia', 15, '902VES');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (22, 'Lorena Pinto', 15, '101INFO');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (23, 'Heitor Moreira', 16, '102LOG');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (24, 'Yasmin Cavalcante', 16, '104LOG');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (25, 'Theo Rocha', 16, '106INFO');
+INSERT INTO aluno (codigo, nome, idade, turma) VALUES (26, 'Helena Batista', 16, '201SST');
 );
