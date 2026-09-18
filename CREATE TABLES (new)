@@ -1,3 +1,5 @@
+TABELA DISCIPLIA
+
 CREATE TABLE disciplina (
     id_disciplina NUMBER PRIMARY KEY,
     nome VARCHAR2(100) NOT NULL,
@@ -13,6 +15,7 @@ VALUES ('EN', 'INGLÊS');
 );
 
 
+TABELA PROFESSORES
 
 CREATE TABLE PROFESSOR (
     PROFESSOR_ID NUMBER PRIMARY KEY,
@@ -32,6 +35,7 @@ VALUES (2, 'TIAGO VIEIRA', 'EN');
 );
 
 
+TABELA TURMA
 
 CREATE TABLE turma (
     id_turma NUMBER PRIMARY KEY,
@@ -60,6 +64,7 @@ INSERT INTO turma (codigo, nome_turma) VALUES ('302EDF', 'Terceiro Ano Dois Téc
 );
 
 
+TABELA ALUNO
 
 CREATE TABLE aluno (
     id_aluno NUMBER PRIMARY KEY,
