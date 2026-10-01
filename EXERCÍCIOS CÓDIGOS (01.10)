@@ -1,0 +1,27 @@
+--NOME ALUNOS E TURMAS
+SELECT a.nome AS aluno, t.nome_turma
+FROM aluno a  
+LEFT JOIN turma t ON a.turma = t.codigo AND a.idade IS NOT NULL
+WHERE a.turma IS NOT NULL
+
+--LISTA DE TURMAS E ALUNOS PRESENTES NELAS
+SELECT t.codigo, t.nome_turma, num.nome
+FROM turma t
+LEFT JOIN aluno num ON t.codigo = num.turma;
+
+--LISTA PROFESSORES E DISCIPLINAS QUE LECIONAM (não concluido)
+SELECT t.nome AS disciplina, t.nome_disciplina, p.nome AS professor
+FROM disciplina P
+LEFT JOIN professor p ON p.codigo = t.professor;
+
+--ALUNOS COM IDADE MAIOR QUE 15 ANOS JUNTO COM SUAS TURMAS
+SELECT a.nome AS aluno, a.idade, t.nome_turma
+FROM aluno a
+LEFT JOIN turma t ON a.turma = t.codigo
+WHERE a.idade > 15;
+
+--LISTAS DE DISCIPLINAS QUE NÃO POSSUEM PROFESSORES ATRIBUÍDOS (não concluido)
+SELECT d.nome_disciplina
+FROM disciplina d
+LEFT JOIN professor p ON d.professor = p.codigo
+WHERE p.codigo IS NULL;
